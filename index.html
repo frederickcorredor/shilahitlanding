@@ -6,9 +6,16 @@
   <title>Shilahit Detox: tratamiento natural desintoxicante.</title>
   <meta name="description" content="Shilahit Detox: tratamiento natural desintoxicante. Resultados desde el primer mes. Compra con envío rápido y pago a contra entrega." />
   <meta name="keywords" content="Shilahit Detox: tratamiento natural desintoxicante. Resultados desde el primer mes. Compra con envío rápido y pago a contra entrega." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-  
+
+  <!-- Preload imagen hero (prioritaria para LCP) -->
+  <link rel="preload" as="image" href="imageneswebp/imagen1.webp" fetchpriority="high">
+
+  <!-- Fuentes (no bloqueantes) -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  </noscript>
+
   <style>
     :root{
       --red:#0c8b08; --red-dark:#b91c1c; --gold:#ffb300; --black:#0b0b0b;
@@ -17,122 +24,133 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:linear-gradient(180deg,#0b0b0b,#121212 60%,#0b0b0b);color:#eaeaea;font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif;padding: 12px;}
+    body{margin:0;background:linear-gradient(180deg,#0b0b0b,#121212 60%,#0b0b0b);color:#eaeaea;font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif;padding:12px;overflow-x:hidden}
     a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block;margin: 16px 2px;border-radius: 16px;border: 1px solid white;box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.644);}
+    img{max-width:100%;display:block;margin:16px 2px;border-radius:16px;border:1px solid rgba(255,255,255,0.06);box-shadow:1px 1px 8px rgba(0,0,0,0.4)}
 
     /* Global effects */
-    .btn{display:inline-flex;gap:.6rem;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;background:var(--red);font-weight:700;letter-spacing:.2px;width: 100%;color: white;transition:.2s; margin: 16px 2px;		-webkit-animation: heartbeat 1.5s ease-in-out infinite both;animation: heartbeat 1.5s ease-in-out infinite both;}
+    .btn{display:inline-flex;gap:.6rem;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;background:var(--red);font-weight:700;letter-spacing:.2px;width:100%;color:white;transition:.2s;margin:16px 2px;animation:heartbeat 1.5s ease-in-out infinite both}
     .btn:hover{background:var(--red-dark);transform:translateY(-1px)}
-    .btn.outline{background:transparent;border:1px solid #ffffff33;animation: none;}
-    .contenedorbtn{display:flex;justify-content:center;margin-top: -20px; margin-bottom: -20px;}
- 
+    .btn.outline{background:transparent;border:1px solid #ffffff33;animation:none}
+    .contenedorbtn{display:flex;justify-content:center;margin-top:-20px;margin-bottom:-20px}
 
-    /* Loading state for button */
-    .btn.loading{opacity:.85;pointer-events:none}
-    .btn .spinner{width:18px;height:18px;border-radius:999px;border:3px solid #ffffff55;border-top-color:#fff;animation:spin .8s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
+    /* Buttons small on modal footer */
+    .modal .footer .btn{width:auto;padding:10px 16px;border-radius:10px}
 
     /* Hero */
-    header.hero{position:relative;overflow:hidden}
+    header.hero{position:relative;overflow:hidden;max-width:1200px;margin:0 auto}
+    header.hero img{width:100%;height:auto;display:block;object-fit:cover;content-visibility:auto;contain-intrinsic-size:600px;border-radius:12px}
 
-    /* recientes */
-    #orderForm{padding:18px;display:grid;gap:14px;}
+    /* Layout */
+    main{max-width:1100px;margin:18px auto;padding:0 12px}
+    .muted{color:#a8b0b8;font-weight:400;font-size:.95rem}
+
+    /* Formulario y secciones */
+    #orderForm{padding:18px;display:grid;gap:14px;background:transparent}
     #orderForm div{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .preform{width: 100%;background-image: url(gifsex.gif);min-height: 350px;background-size: cover;border-radius: 16px;background-attachment: fixed;max-width: 1100px;background-position: center;display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end;}
-
-    /* Responsive */
-    @media (max-width: 980px){
-      header{background-size: 380px;background-repeat: no-repeat;background-position: 95px 40px;}
-      #orderForm div{display:grid;grid-template-columns:1fr;gap:12px}
-      .preform{background-position: -330px; display: block;}
-    }
-
-    /* Inputs */
-    .in{width:100%;margin-top:6px;padding:12px 14px;border:1px solid #ffffff22;background:#0f0f0f;border-radius:12px;color:#eaeaea;outline:none}
+    .in{width:100%;margin-top:6px;padding:12px 14px;border:1px solid #ffffff10;background:#0f0f0f;border-radius:12px;color:#eaeaea;outline:none}
     .in:focus{border-color:var(--gold);box-shadow:0 0 0 4px var(--ring)}
     label{display:block;font-weight:600}
     .error{border-color:#ef4444!important}
 
-    /* ====== NUEVO: estilos del modal, selector de ofertas y totales (aislados, sin tocar lo existente) ====== */
-    .modal-overlay{position:fixed;inset:0;background:#000a;backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:1000;padding:16px}
-    .modal{width:min(960px,100%);max-height:92vh;overflow:auto;background:#0e0e0e;border:1px solid #ffffff22;border-radius:16px;box-shadow:0 30px 80px #000c}
-    .modal header{position:sticky;top:0;background:#0e0e0ef2;padding:16px 18px;border-bottom:1px solid #ffffff1a;display:flex;justify-content:space-between;align-items:center}
+    .preform{width:100%;background-image:url(gifsex.gif);min-height:350px;background-size:cover;border-radius:16px;background-attachment:fixed;max-width:1100px;background-position:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end}
+
+    /* Modal básico - inline crítico para evitar problemas MIME con archivo externo */
+    .modal-overlay{display:none;position:fixed;inset:0;background:#000a;backdrop-filter:blur(4px);align-items:center;justify-content:center;z-index:10000;padding:16px}
+    .modal-overlay.active{display:flex}
+    .modal{width:min(960px,100%);max-height:92vh;overflow:auto;background:#0e0e0e;border:1px solid rgba(255,255,255,0.08);border-radius:16px;box-shadow:0 30px 80px #000c}
+    .modal header{position:sticky;top:0;background:#0e0e0ef2;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center}
     .modal h3{margin:0;font-size:1.4rem}
     .modal .close{background:transparent;border:0;color:#fff;font-size:1.6rem;cursor:pointer;line-height:1}
     .modal .body{padding:18px}
-    .modal .footer{padding:16px;border-top:1px solid #ffffff1a;display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+    .modal .footer{padding:16px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+
     .offers{display:grid;grid-template-columns:1fr;gap:12px;margin:12px 0 8px}
-    .offer-card{display:grid;grid-template-columns:92px 1fr auto;gap:12px;align-items:center;padding:12px;border:1px solid #ffffff22;border-radius:14px;background:#101010;cursor:pointer;transition:.2s}
-    .offer-card:hover{border-color:#ffffff55;transform:translateY(-1px)}
-    .offer-card.active{outline:2px solid var(--red);box-shadow:0 0 0 4px #ffffff12 inset}
-    .offer-img{width:92px;height:92px;display:flex;align-items:center;justify-content:center;background:#0b0b0b;border-radius:10px;border:1px solid #ffffff14;overflow:hidden}
+    .offer-card{display:grid;grid-template-columns:92px 1fr auto;gap:12px;align-items:center;padding:12px;border:1px solid rgba(255,255,255,0.05);border-radius:14px;background:#101010;cursor:pointer;transition:.18s}
+    .offer-card:hover{border-color:rgba(255,255,255,0.14);transform:translateY(-2px)}
+    .offer-card.active{outline:2px solid var(--red);box-shadow:0 0 0 4px rgba(255,255,255,0.06) inset}
+    .offer-img{width:92px;height:92px;display:flex;align-items:center;justify-content:center;background:#0b0b0b;border-radius:10px;border:1px solid rgba(255,255,255,0.04);overflow:hidden}
     .offer-title{font-weight:700}
-    .offer-badge{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;padding:4px 8px;border-radius:999px;border:1px solid #ffffff22;margin-left:6px}
+    .offer-badge{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;padding:4px 8px;border-radius:999px;border:1px solid rgba(255,255,255,0.06);margin-left:6px}
     .badge-hot{background:#1e3a8a;color:#fff;border-color:transparent}
     .badge-save{background:#0f5132;color:#c6f6d5;border-color:transparent}
     .price{display:flex;flex-direction:column;align-items:flex-end}
     .price .compare{color:#94a3b8;text-decoration:line-through;font-size:.9rem}
     .price .current{font-size:1rem;font-weight:800}
-    .totals{display:grid;gap:6px;padding:12px;border:1px dashed #ffffff33;border-radius:12px;background:#0b0b0b;margin:8px 0 14px}
+    .totals{display:grid;gap:6px;padding:12px;border:1px dashed rgba(255,255,255,0.06);border-radius:12px;background:#0b0b0b;margin:8px 0 14px}
     .row{display:flex;justify-content:space-between;gap:12px}
     .row strong{font-weight:800}
+
     @media (max-width:980px){
+      header{background-size:380px;background-repeat:no-repeat;background-position:95px 40px}
+      #orderForm div{display:grid;grid-template-columns:1fr;gap:12px}
+      .preform{background-position:-330px;background-attachment:scroll}
       .offer-card{grid-template-columns:53px 1fr auto}
       .offer-img{width:50px;height:50px}
     }
 
-  @-webkit-keyframes heartbeat {
-    from {transform: scale(1);transform-origin:center;animation-timing-function:ease-out}
-    10% {transform: scale(0.91);animation-timing-function:ease-in}
-    17% {transform: scale(0.98);animation-timing-function:ease-out}
-    33% {transform: scale(0.87);animation-timing-function:ease-in}
-    45% {transform: scale(1);animation-timing-function:ease-out}
-  }
-  @keyframes heartbeat {
-    from {transform: scale(1);transform-origin:center;animation-timing-function:ease-out}
-    10% {transform: scale(0.91);animation-timing-function:ease-in}
-    17% {transform: scale(0.98);animation-timing-function:ease-out}
-    33% {transform: scale(0.87);animation-timing-function:ease-in}
-    45% {transform: scale(1);animation-timing-function:ease-out}
-  }
+    @keyframes heartbeat {
+      from {transform: scale(1)}
+      10% {transform: scale(0.91)}
+      17% {transform: scale(0.98)}
+      33% {transform: scale(0.87)}
+      45% {transform: scale(1)}
+    }
+
+    /* Toast visual */
+    .toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-10px);
+      background: linear-gradient(90deg,#10b981,#059669);
+      color: white;
+      padding: 12px 18px;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease, transform .25s ease;
+      z-index: 11000;
+      font-weight:700;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events:auto; }
   </style>
 </head>
 <body>
 
   <header class="hero">
-    <img src="imageneswebp/imagen1.webp" alt="">
+    <img src="imageneswebp/imagen1.webp" alt="Shilahit Detox" fetchpriority="high" decoding="async" width="1200" height="675">
   </header>
-    
-
 
   <main>
-    <img src="imageneswebp/imagen2.webp" alt="">
+    <img src="imageneswebp/imagen2.webp" alt="Producto Shilahit">
     <div class="contenedorbtn">
-        <a href="#checkout" class="btn">Ordenar ahora</a>
+      <a href="#checkout" class="btn">Ordenar ahora</a>
     </div>
 
-    <img src="imageneswebp/imagen3.webp" alt="">
+    <img src="imageneswebp/imagen3.webp" alt="Beneficios Shilahit">
 
-    <img loading="lazy" src="imageneswebp/imagen4.webp" alt="">
-    <img loading="lazy" src="imageneswebp/imagen5.webp" alt="">
-    <img loading="lazy" src="imageneswebp/imagen6.webp" alt="">
-           <div class="contenedorbtn">
-        <a href="#oferta" class="btn">Comenzar ahora</a>
-    </div>
-    <img loading="lazy" src="imageneswebp/imagen7.webp" alt="">
-    <img loading="lazy" src="imageneswebp/imagen8.webp" alt="">
-    <img loading="lazy" src="imageneswebp/imagen9.webp" alt="">
+    <img loading="lazy" decoding="async" src="imageneswebp/imagen4.webp" alt="">
+    <img loading="lazy" decoding="async" src="imageneswebp/imagen5.webp" alt="">
+    <img loading="lazy" decoding="async" src="imageneswebp/imagen6.webp" alt="">
+
     <div class="contenedorbtn">
-         <a href="#checkout" class="btn">Ordenar ahora</a>
+      <a href="#oferta" class="btn">Comenzar ahora</a>
     </div>
 
+    <img loading="lazy" decoding="async" src="imageneswebp/imagen7.webp" alt="">
+    <img loading="lazy" decoding="async" src="imageneswebp/imagen8.webp" alt="">
+    <img loading="lazy" decoding="async" src="imageneswebp/imagen9.webp" alt="">
 
+    <div class="contenedorbtn">
+      <a href="#checkout" class="btn">Ordenar ahora</a>
+    </div>
   </main>
 
   <!-- ===== MODAL DE OFERTAS ===== -->
   <div class="modal-overlay" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
-    <div class="modal">
+    <div class="modal" role="document">
       <header>
         <div>
           <h3 id="modalTitle">Elije tu Oferta</h3>
@@ -140,12 +158,12 @@
         </div>
         <button class="close" id="closeCheckout" aria-label="Cerrar">×</button>
       </header>
+
       <div class="body">
         <!-- Selector de ofertas -->
         <div class="offers" id="offerList">
-          <!-- Opción 1 -->
           <div class="offer-card" data-offer="Compra 1" data-qty="1" data-price="150000" data-compare="150000" tabindex="0">
-            <div class="offer-img"><img src="imageneswebp/Soloshilajit.webp" alt="Zipper Strong"></div>
+            <div class="offer-img"><img decoding="async" loading="lazy" src="imageneswebp/Soloshilajit.webp" alt="Shilahit 1 frasco"></div>
             <div>
               <div class="offer-title">Compra 1</div>
               <div class="muted">1 Shilahit Detox (180 tabletas)</div>
@@ -155,9 +173,9 @@
               <span class="current">$150.000</span>
             </div>
           </div>
-          <!-- Opción 2 -->
+
           <div class="offer-card" data-offer="Compra 1 + Virilex -50%" data-qty="2" data-price="225000" data-compare="300000" tabindex="0">
-            <div class="offer-img"><img src="imageneswebp/Soloshilajit.webp" alt="Zipper Strong + Virilex"></div>
+            <div class="offer-img"><img decoding="async" loading="lazy" src="imageneswebp/Soloshilajit.webp" alt="Shilahit x2"></div>
             <div>
               <div class="offer-title">Compra 2</div>
               <div class="muted">1 Shilahit Detox segundo con 50% de descuento</div>
@@ -168,11 +186,11 @@
               <span class="current">$225.000</span>
             </div>
           </div>
-          <!-- Opción 3 -->
+
           <div class="offer-card" data-offer="Compra 2 + 1 GRATIS" data-qty="3" data-price="300000" data-compare="450000" tabindex="0">
-            <div class="offer-img"><img src="imageneswebp/Soloshilajit.webp" alt="Zipper Strong 2+1"></div>
+            <div class="offer-img"><img decoding="async" loading="lazy" src="imageneswebp/Soloshilajit.webp" alt="Shilahit 2+1"></div>
             <div>
-              <div class="offer-title">Compra 2 Shilahit Detox + 1 GRATIS</div>
+              <div class="offer-title">Compra 2 + 1 GRATIS</div>
               <div class="muted">Tratamiento extendido (9 meses)</div>
               <span class="offer-badge badge-save">Más ahorro</span>
             </div>
@@ -223,7 +241,7 @@
             <input required name="address" type="text" placeholder="Calle 00 # 00-00, apto, barrio" class="in" maxlength="120">
           </label>
 
-          <div>
+          <div style="display:none">
             <label>Cantidad
               <select name="qty" class="in">
                 <option>1 frasco</option>
@@ -249,144 +267,202 @@
 
         <div id="formMount"></div>
       </div>
+
       <div class="footer">
         <small class="muted">Protegemos tus datos. Usamos la información únicamente para gestionar tu pedido.</small>
       </div>
     </div>
   </div>
 
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true">✅ Pedido enviado correctamente</div>
+
   <!-- JS -->
   <script>
+    (function(){
+      // URL del webhook (confimado)
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby74C6ITsLLaJMw_JciXWFqYNr13EIW6CzDUlEh8xXjbXutwON_1mVg33mO6wH7FSfLWA/exec";
 
-    
+      // Elements
+      const modal = document.getElementById('checkoutModal');
+      const closeBtn = document.getElementById('closeCheckout');
+      const openButtons = Array.from(document.querySelectorAll('a[href="#checkout"], a[href="#oferta"], [data-open-modal]'));
+      const offerList = document.getElementById('offerList');
+      const offerCards = Array.from(document.querySelectorAll('.offer-card'));
+      const totalPrice = document.getElementById('totalPrice');
+      const form = document.getElementById('orderForm');
+      const formMsg = document.getElementById('formMsg');
+      const submitBtn = document.getElementById('submitBtn');
+      const toast = document.getElementById('toast');
 
+      let selectedOffer = null;
 
-    // ====== FORM LOGIC (Sheets) ====== (SE MANTIENE INTACTO)
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby74C6ITsLLaJMw_JciXWFqYNr13EIW6CzDUlEh8xXjbXutwON_1mVg33mO6wH7FSfLWA/exec";
+      // Ensure modal hidden on load
+      modal.classList.remove('active');
+      document.body.classList.remove('modal-open');
 
-    document.getElementById("orderForm").addEventListener("submit", e => {
-      e.preventDefault();
+      // Toast helper
+      function showToast(text = "✅ Pedido enviado correctamente", type = "success") {
+        toast.textContent = text;
+        toast.classList.add('show');
+        setTimeout(()=> toast.classList.remove('show'), 3000);
+      }
 
-      const form = e.target;
-      const msg = document.getElementById("formMsg");
-      const btn = document.getElementById("submitBtn");
-
-      // Anti-spam honeypot
-      if (form.website.value !== "") return;
-
-      const data = {
-        name: form.name.value,
-        phone: form.phone.value,
-        state: form.state.value,
-        city: form.city.value,
-        address: form.address.value,
-        qty: form.qty.value
-      };
-
-      btn.disabled = true;
-      msg.textContent = "Enviando pedido...";
-
-      fetch(SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      }).then(() => {
-        msg.textContent = "✅ Pedido enviado correctamente. Pronto te contactaremos.";
-        form.reset();
-      }).catch(() => {
-        msg.textContent = "❌ Hubo un error, inténtalo nuevamente.";
-      }).finally(() => {
-        btn.disabled = false;
+      // Open modal
+      openButtons.forEach(btn => {
+        btn.addEventListener('click', function(e){
+          e.preventDefault();
+          modal.classList.add('active');
+          document.body.classList.add('modal-open');
+          modal.setAttribute('aria-hidden','false');
+        });
       });
-    });
 
-    // ===== Lógica del modal y selector de ofertas =====
-    const modal = document.getElementById('checkoutModal');
-    const form = document.getElementById('orderForm');
-    const formMount = document.getElementById('formMount');
-    const closeBtn = document.getElementById('closeCheckout');
-
-    // Ocultar "Cantidad" y referenciar el select
-    const qtySelect = form.querySelector('select[name="qty"]');
-    const qtyLabel = qtySelect ? qtySelect.closest('label') : null;
-    if (qtyLabel) qtyLabel.style.display = 'none'; // oculto sin tocar CSS global
-
-    function openModal(){
-      // Añadir campos ocultos de oferta si no existen
-      if (!form.querySelector('input[name="offer"]')) {
-        const hiddenOffer = document.createElement('input');
-        hiddenOffer.type = 'hidden'; hiddenOffer.name = 'offer'; hiddenOffer.id = 'offer';
-        form.appendChild(hiddenOffer);
+      // Close modal
+      closeBtn.addEventListener('click', closeModal);
+      function closeModal(){
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+        modal.setAttribute('aria-hidden','true');
       }
-      if (!form.querySelector('input[name="offer_price"]')) {
-        const hiddenPrice = document.createElement('input');
-        hiddenPrice.type = 'hidden'; hiddenPrice.name = 'offer_price'; hiddenPrice.id = 'offer_price';
-        form.appendChild(hiddenPrice);
-      }
-      // Colocar el form en el mount dentro del modal (no se duplica)
-      if (formMount && form && form.parentElement !== formMount) {
-        formMount.appendChild(form);
-      }
-      modal.style.display = 'flex';
-      modal.setAttribute('aria-hidden','false');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeModal(){
-      modal.style.display = 'none';
-      modal.setAttribute('aria-hidden','true');
-      document.body.style.overflow = '';
-    }
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+      modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
 
-    // Abrir modal desde CTAs existentes (sin modificar su HTML)
-    document.querySelectorAll('a[href="#checkout"], a[href="#oferta"].btn, .cta-row .btn').forEach(el=>{
-      const text = el.textContent.trim().toLowerCase();
-      if(text.includes('ordenar ahora') || text.includes('quiero recuperar') || text.includes('comenzar ahora')) {
-        el.addEventListener('click', (ev)=>{ ev.preventDefault(); openModal(); });
-      }
-    });
-
-    // Selector de ofertas
-    const offerCards = Array.from(document.querySelectorAll('.offer-card'));
-    const totalPrice = document.getElementById('totalPrice');
-    function formatCOP(n){
-      return n.toLocaleString('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0});
-    }
-
-    function selectOffer(card){
-      offerCards.forEach(c=>c.classList.remove('active'));
-      card.classList.add('active');
-
-      const price = Number(card.dataset.price);
-      totalPrice.textContent = formatCOP(price);
-
-      // Rellenar inputs ocultos (si existen)
-      const offerInput = document.getElementById('offer');
-      const offerPriceInput = document.getElementById('offer_price');
-      if (offerInput) offerInput.value = card.dataset.offer;
-      if (offerPriceInput) offerPriceInput.value = String(price);
-
-      // Autocompletar "Cantidad" según oferta (aunque esté oculta)
+      // Hide qty label (keeps select for backend but not visible)
+      const qtySelect = form.querySelector('select[name="qty"]');
       if (qtySelect) {
-        const q = parseInt(card.dataset.qty, 10) || 1;
-        const val = q === 1 ? '1 frasco' : `${q} frascos`;
-        qtySelect.value = val;
+        const qtyLabel = qtySelect.closest('label');
+        if (qtyLabel) qtyLabel.style.display = 'none';
       }
-    }
 
-    offerCards.forEach(c=>{
-      c.addEventListener('click', ()=> selectOffer(c));
-      c.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); selectOffer(c); } });
-    });
+      // Offer selection logic
+      function formatCOP(n){
+        try { return n.toLocaleString('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}); }
+        catch(e){ return '$' + n; }
+      }
 
-    // Selección por defecto
-    selectOffer(offerCards[1] || offerCards[0]);
+      function selectOffer(card){
+        offerCards.forEach(c=>c.classList.remove('active'));
+        card.classList.add('active');
+
+        const price = Number(card.dataset.price) || 0;
+        totalPrice.textContent = formatCOP(price);
+
+        // Fill hidden inputs (create if missing)
+        let offerInput = form.querySelector('input[name="offer"]');
+        if (!offerInput) {
+          offerInput = document.createElement('input'); offerInput.type='hidden'; offerInput.name='offer';
+          form.appendChild(offerInput);
+        }
+        let priceInput = form.querySelector('input[name="offer_price"]');
+        if (!priceInput) {
+          priceInput = document.createElement('input'); priceInput.type='hidden'; priceInput.name='offer_price';
+          form.appendChild(priceInput);
+        }
+        offerInput.value = card.dataset.offer;
+        priceInput.value = String(price);
+
+        // Autoselect qty (hidden)
+        if (qtySelect) {
+          const q = parseInt(card.dataset.qty,10) || 1;
+          qtySelect.value = q === 1 ? '1 frasco' : `${q} frascos`;
+        }
+
+        selectedOffer = { offer: card.dataset.offer, qty: card.dataset.qty, price: price };
+      }
+
+      offerCards.forEach(c=>{
+        c.addEventListener('click', ()=> selectOffer(c));
+        c.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); selectOffer(c); } });
+      });
+
+      // Default select (2nd or first)
+      selectOffer(offerCards[1] || offerCards[0]);
+
+      // Form submit handler
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        formMsg.textContent = "";
+        // anti-spam
+        if (form.website && form.website.value !== "") return;
+
+        // Basic validation
+        const data = new FormData(form);
+        const required = ['name','phone','state','city','address'];
+        const invalid = [];
+        required.forEach(k=>{
+          const el = form.querySelector(`[name="${k}"]`);
+          if (!el) return;
+          if (!el.value.trim() || !el.checkValidity()) invalid.push(k);
+        });
+        if (invalid.length) {
+          formMsg.textContent = "Por favor completa todos los campos correctamente.";
+          showToast("Completa los campos requeridos", "error");
+          // highlight fields
+          invalid.forEach(k=>{
+            const el = form.querySelector(`[name="${k}"]`);
+            if (el) el.classList.add('error');
+          });
+          return;
+        }
+
+        // Ensure offer selected
+        if (!selectedOffer) {
+          formMsg.textContent = "Selecciona una oferta antes de continuar.";
+          showToast("Selecciona una oferta", "error");
+          return;
+        }
+
+        // UX: disable button
+        submitBtn.disabled = true;
+        const originalBtnText = submitBtn.querySelector('.btn-text')?.textContent || submitBtn.textContent;
+        if (submitBtn.querySelector('.btn-text')) submitBtn.querySelector('.btn-text').textContent = "Enviando pedido...";
+
+        // Use FormData to avoid preflight and custom headers (works with GAS webapps)
+        try {
+          // Append any dynamic offer fields (already added above but ensure)
+          if (!form.querySelector('input[name="offer"]')) data.append('offer', selectedOffer.offer || '');
+          if (!form.querySelector('input[name="offer_price"]')) data.append('offer_price', selectedOffer.price || '');
+
+          // Send (no custom headers). Use mode:'no-cors' to avoid CORS preflight if your GAS endpoint isn't configured.
+          // Warning: with no-cors you won't get useful response details; we optimistically treat as success.
+          await fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: data
+          });
+
+          // success UI (optimistic)
+          formMsg.textContent = "✅ Pedido enviado correctamente. Pronto te contactaremos.";
+          showToast("✅ Pedido enviado correctamente");
+          form.reset();
+          // reset totals
+          totalPrice.textContent = formatCOP(0);
+          // close modal after small delay
+          setTimeout(()=> closeModal(), 900);
+        } catch(err){
+          console.error(err);
+          formMsg.textContent = "❌ Hubo un error al enviar. Intenta nuevamente.";
+          showToast("❌ Error al enviar el pedido");
+        } finally {
+          submitBtn.disabled = false;
+          if (submitBtn.querySelector('.btn-text')) submitBtn.querySelector('.btn-text').textContent = originalBtnText;
+        }
+      });
+
+      // Remove error highlight on input
+      form.querySelectorAll('.in').forEach(input => input.addEventListener('input', ()=> input.classList.remove('error')));
+
+      // IntersectionObserver to add 'visible' class for lazy images (optional UX)
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(entries=>{
+          entries.forEach(e=>{
+            if (e.isIntersecting) e.target.classList.add('visible');
+          });
+        }, { threshold: 0.2 });
+        document.querySelectorAll('img[loading="lazy"]').forEach(img=>observer.observe(img));
+      }
+    })();
   </script>
 </body>
-
 </html>
-
-
