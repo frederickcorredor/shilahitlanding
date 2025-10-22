@@ -24,25 +24,35 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:linear-gradient(180deg,#0b0b0b,#121212 60%,#0b0b0b);color:#eaeaea;font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif;padding:12px;overflow-x:hidden}
+    body{margin:0;background:linear-gradient(180deg,#0b0b0b,#121212 60%,#0b0b0b);color:#eaeaea;font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif;padding:2px;overflow-x:hidden}
     a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block;margin:16px 2px;border-radius:16px;border:1px solid rgba(255,255,255,0.06);box-shadow:1px 1px 8px rgba(0,0,0,0.4)}
+    img{max-width:100%;display:block;margin:0px 1px;box-shadow:1px 1px 8px rgba(0,0,0,0.4);border-bottom: 3px solid white;border-top:3px solid white ;}
 
     /* Global effects */
-    .btn{display:inline-flex;gap:.6rem;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;background:var(--red);font-weight:700;letter-spacing:.2px;width:100%;color:white;transition:.2s;margin:16px 2px;animation:heartbeat 1.5s ease-in-out infinite both}
+    .btn{display:inline-flex;gap:.6rem;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;background:var(--red);font-weight:700;letter-spacing:.2px;width:100%;color:white;transition:.2s;margin:16px 2px;animation:heartbeat 1.5s ease-in-out infinite both;}
     .btn:hover{background:var(--red-dark);transform:translateY(-1px)}
     .btn.outline{background:transparent;border:1px solid #ffffff33;animation:none}
     .contenedorbtn{display:flex;justify-content:center;margin-top:-20px;margin-bottom:-20px}
+    .contenedorbtn .btn{position: fixed;bottom: 0px; justify-content: space-around; background-color: red; gap: 2px;
+      span{
+        color:yellow; 
+        font-size: 26px;  
+      }
+    }
+
+
+    .llamado{font-size:1.2rem;font-weight:800};
+
 
     /* Buttons small on modal footer */
     .modal .footer .btn{width:auto;padding:10px 16px;border-radius:10px}
 
     /* Hero */
-    header.hero{position:relative;overflow:hidden;max-width:1200px;margin:0 auto}
-    header.hero img{width:100%;height:auto;display:block;object-fit:cover;content-visibility:auto;contain-intrinsic-size:600px;border-radius:12px}
+    header.hero{position:relative;overflow:hidden;max-width:1200px;margin:-4px auto}
+    header.hero img{width:100%;height:auto;display:block;object-fit:cover;content-visibility:auto;contain-intrinsic-size:600px;}
 
     /* Layout */
-    main{max-width:1100px;margin:18px auto;padding:0 12px}
+    main{max-width:1100px;margin:4px auto;padding:0 2px}
     .muted{color:#a8b0b8;font-weight:400;font-size:.95rem}
 
     /* Formulario y secciones */
@@ -52,8 +62,16 @@
     .in:focus{border-color:var(--gold);box-shadow:0 0 0 4px var(--ring)}
     label{display:block;font-weight:600}
     .error{border-color:#ef4444!important}
-
     .preform{width:100%;background-image:url(gifsex.gif);min-height:350px;background-size:cover;border-radius:16px;background-attachment:fixed;max-width:1100px;background-position:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end}
+
+        /* ===== Inputs con ícono ===== */
+        .field{position:relative;display: block;}
+        .field .ico{
+          position:absolute;left:12px;top:50%;transform:translateY(-50%);
+          width:18px;height:18px;opacity:.8;pointer-events:none;
+          color:#b8c0cc; /* usa tu --muted si prefieres */
+        }
+        .in.with-ico{padding-left:44px}
 
     /* Modal básico - inline crítico para evitar problemas MIME con archivo externo */
     .modal-overlay{display:none;position:fixed;inset:0;background:#000a;backdrop-filter:blur(4px);align-items:center;justify-content:center;z-index:10000;padding:16px}
@@ -80,9 +98,13 @@
     .totals{display:grid;gap:6px;padding:12px;border:1px dashed rgba(255,255,255,0.06);border-radius:12px;background:#0b0b0b;margin:8px 0 14px}
     .row{display:flex;justify-content:space-between;gap:12px}
     .row strong{font-weight:800}
+    #totalsBox{grid-template-columns: 1fr 1fr !important;justify-items: center;}
+
+
+    .timer{display:flex;gap:1px;justify-content:center;align-items: center;flex-wrap: wrap;width: 30%;}
+    .timer .box{padding:2px;display: flex;flex-wrap: wrap;justify-content: center;align-items: center;}
 
     @media (max-width:980px){
-      header{background-size:380px;background-repeat:no-repeat;background-position:95px 40px}
       #orderForm div{display:grid;grid-template-columns:1fr;gap:12px}
       .preform{background-position:-330px;background-attachment:scroll}
       .offer-card{grid-template-columns:53px 1fr auto}
@@ -125,9 +147,8 @@
 
   <main>
     <img src="imageneswebp/imagen2.webp" alt="Producto Shilahit">
-    <div class="contenedorbtn">
-      <a href="#checkout" class="btn">Ordenar ahora</a>
-    </div>
+    
+    
 
     <img src="imageneswebp/imagen3.webp" alt="Beneficios Shilahit">
 
@@ -135,16 +156,23 @@
     <img loading="lazy" decoding="async" src="imageneswebp/imagen5.webp" alt="">
     <img loading="lazy" decoding="async" src="imageneswebp/imagen6.webp" alt="">
 
-    <div class="contenedorbtn">
-      <a href="#oferta" class="btn">Comenzar ahora</a>
-    </div>
 
     <img loading="lazy" decoding="async" src="imageneswebp/imagen7.webp" alt="">
     <img loading="lazy" decoding="async" src="imageneswebp/imagen8.webp" alt="">
     <img loading="lazy" decoding="async" src="imageneswebp/imagen9.webp" alt="">
 
     <div class="contenedorbtn">
-      <a href="#checkout" class="btn">Ordenar ahora</a>
+      <a href="#checkout" class="btn"><span class="llamado">Obtener Oferta</span>
+
+        <div class="timer" style="margin:0px 0px">
+            <div style="width: 90%;text-align: center;"><span style="font-size: 0.9rem;color: white;">Finaliza en</span></div>
+            <div class="box"><div id="t-h" style="font-size:1.2rem">02</div></div>:
+            <div class="box"><div id="t-m" style="font-size:1.2rem">54</div></div>:
+            <div class="box"><div id="t-s" style="font-size:1.2rem">47</div></div>
+          </div>
+
+
+      </a>
     </div>
   </main>
 
@@ -201,11 +229,7 @@
           </div>
         </div>
 
-        <!-- Totales -->
-        <div class="totals" id="totalsBox" aria-live="polite">
-          <div class="row"><span>Total</span><strong id="totalPrice">$0</strong></div>
-          <div class="row"><span>Envío</span><strong class="accent">Gratis</strong></div>
-        </div>
+
 
         <!-- Formulario dentro del modal -->
         <form id="orderForm" class="glass" novalidate>
@@ -214,31 +238,65 @@
 
           <div>
             <label>Nombre y Apellidos
-              <input required name="name" type="text" placeholder="Tu nombre completo" class="in" maxlength="80">
+              <span class="field">
+                <!-- ícono usuario -->
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5Z"/>
+                </svg>
+                <input required name="name" type="text" placeholder="Tu nombre completo" class="in with-ico" maxlength="80">
+              </span>
             </label>
+
             <label>WhatsApp
-              <input required name="phone" type="tel" inputmode="numeric" placeholder="3xx xxx xxxx" class="in" maxlength="13">
+              <span class="field">
+                <!-- ícono teléfono -->
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.36 11.36 0 0 0 3.56.57 1 1 0 0 1 1 1v3.59a1 1 0 0 1-1 1A16 16 0 0 1 3 5a1 1 0 0 1 1-1h3.6a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.56 1 1 0 0 1-.24 1.01Z"/>
+                </svg>
+                <input required name="phone" type="tel" inputmode="numeric" placeholder="3xx xxx xxxx" class="in with-ico" maxlength="13">
+              </span>
             </label>
           </div>
 
+          <!-- Departamento y Ciudad -->
           <div>
             <label>Departamento
-              <select required name="state" class="in">
-                <option value="" selected disabled>Selecciona</option>
-                <option>Amazonas</option><option>Antioquia</option><option>Arauca</option><option>Atlántico</option>
-                <option>Bolívar</option><option>Boyacá</option><option>Caldas</option><option>Caquetá</option><option>Casanare</option><option>Cauca</option><option>Cesar</option>
-                <option>Chocó</option><option>Córdoba</option><option>Cundinamarca</option><option>Guainía</option><option>Guaviare</option><option>Huila</option><option>La Guajira</option>
-                <option>Magdalena</option><option>Meta</option><option>Nariño</option><option>Norte de Santander</option><option>Putumayo</option><option>Quindío</option><option>Risaralda</option>
-                <option>San Andrés y Providencia</option><option>Santander</option><option>Sucre</option><option>Tolima</option><option>Valle del Cauca</option><option>Vaupés</option><option>Vichada</option>
-              </select>
+              <span class="field">
+                <!-- ícono mapa -->
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5Z"/>
+                </svg>
+                <select required name="state" class="in with-ico">
+                  <option value="" selected disabled>Selecciona</option>
+                  <option>Amazonas</option><option>Antioquia</option><option>Arauca</option><option>Atlántico</option>
+                  <option>Bolívar</option><option>Boyacá</option><option>Caldas</option><option>Caquetá</option><option>Casanare</option><option>Cauca</option><option>Cesar</option>
+                  <option>Chocó</option><option>Córdoba</option><option>Cundinamarca</option><option>Guainía</option><option>Guaviare</option><option>Huila</option><option>La Guajira</option>
+                  <option>Magdalena</option><option>Meta</option><option>Nariño</option><option>Norte de Santander</option><option>Putumayo</option><option>Quindío</option><option>Risaralda</option>
+                  <option>San Andrés y Providencia</option><option>Santander</option><option>Sucre</option><option>Tolima</option><option>Valle del Cauca</option><option>Vaupés</option><option>Vichada</option>
+                </select>
+              </span>
             </label>
+
             <label>Ciudad / Municipio
-              <input required name="city" type="text" placeholder="Ej. Bogotá, Medellín" class="in" maxlength="60">
+              <span class="field">
+                <!-- ícono pin -->
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M12 2a6 6 0 0 0-6 6c0 3.87 6 10 6 10s6-6.13 6-10a6 6 0 0 0-6-6Zm0 8a2 2 0 1 1 2-2 2 2 0 0 1-2 2Z"/>
+                </svg>
+                <input required name="city" type="text" placeholder="Ej. Bogotá, Medellín" class="in with-ico" maxlength="60">
+              </span>
             </label>
           </div>
 
+          <!-- Dirección -->
           <label>Dirección de entrega
-            <input required name="address" type="text" placeholder="Calle 00 # 00-00, apto, barrio" class="in" maxlength="120">
+              <span class="field">
+                <!-- ícono casa -->
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M12 3 2 12h3v8h6v-5h2v5h6v-8h3Z"/>
+                </svg>
+                <input required name="address" type="text" placeholder="Calle 00 # 00-00, apto, barrio" class="in with-ico" maxlength="120">
+              </span>
           </label>
 
           <div style="display:none">
@@ -255,6 +313,12 @@
             <input type="checkbox" required name="terms" style="accent-color:var(--red)">
             <span class="muted">Acepto la política de tratamiento de datos y autorizo el contacto para coordinar el envío.</span>
           </label>
+
+                  <!-- Totales -->
+        <div class="totals" id="totalsBox" aria-live="polite">
+          <div class="row"><span>Total</span><strong id="totalPrice">$0</strong></div>
+          <div class="row"><span>Envío</span><strong class="accent">Gratis</strong></div>
+        </div>
 
           <div style="display:flex;gap:10px;flex-wrap:wrap">
             <button type="submit" id="submitBtn" class="btn">
@@ -282,6 +346,43 @@
     (function(){
       // URL del webhook (confimado)
       const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby74C6ITsLLaJMw_JciXWFqYNr13EIW6CzDUlEh8xXjbXutwON_1mVg33mO6wH7FSfLWA/exec";
+
+       document.getElementById("orderForm").addEventListener("submit", e => {
+      e.preventDefault();
+
+      const form = e.target;
+      const msg = document.getElementById("formMsg");
+      const btn = document.getElementById("submitBtn");
+
+      // Anti-spam honeypot
+      if (form.website.value !== "") return;
+
+      const data = {
+        name: form.name.value,
+        phone: form.phone.value,
+        state: form.state.value,
+        city: form.city.value,
+        address: form.address.value,
+        qty: form.qty.value
+      };
+
+      btn.disabled = true;
+      msg.textContent = "Enviando pedido...";
+
+      fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }).then(() => {
+        msg.textContent = "✅ Pedido enviado correctamente. Pronto te contactaremos.";
+        form.reset();
+      }).catch(() => {
+        msg.textContent = "❌ Hubo un error, inténtalo nuevamente.";
+      }).finally(() => {
+        btn.disabled = false;
+      });
+    });
 
       // Elements
       const modal = document.getElementById('checkoutModal');
@@ -463,6 +564,20 @@
         document.querySelectorAll('img[loading="lazy"]').forEach(img=>observer.observe(img));
       }
     })();
+
+        // ===== Contador 3h persistente por sesión =====
+    const LS_KEY = 'zipper_countdown_end';
+    const threeHours = 3*60*60*1000;
+    let end = parseInt(localStorage.getItem(LS_KEY),10);
+    if (!end || end < Date.now()) { end = Date.now() + threeHours; localStorage.setItem(LS_KEY, String(end)); }
+    const th = document.getElementById('t-h'), tm = document.getElementById('t-m'), ts = document.getElementById('t-s');
+    setInterval(()=>{
+      const left = Math.max(0, end - Date.now());
+      const h = String(Math.floor(left/3.6e6)).padStart(2,'0');
+      const m = String(Math.floor(left%3.6e6/6e4)).padStart(2,'0');
+      const s = String(Math.floor(left%6e4/1e3)).padStart(2,'0');
+      th.textContent=h; tm.textContent=m; ts.textContent=s;
+    },500);
   </script>
 </body>
 </html>
